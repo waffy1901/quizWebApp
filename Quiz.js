@@ -3,7 +3,7 @@ let correctAnswers = 0;
 let wrongAnswers = 0;
 let questionIndex = 0;
 let questionsOfRandomOrder = [];
-    const quizQuestions = [ {
+    const quizQuestions = [{
             question: "What percentage of a human brain consists of fat?",
             choiceA: "60%",
             choiceB: "20%",
@@ -52,8 +52,7 @@ let questionsOfRandomOrder = [];
             choiceC: "Heart",
             choiceD: "Pancreas",
             correctAnswer: "choiceA"
-        },
-];
+        },];
 
     // shuffles and pushes 7 questions to questionsOfRandomOrder array (initialized as empty)
     function orderQuestions() { 
@@ -153,14 +152,14 @@ let questionsOfRandomOrder = [];
             feedbackColor = "orange";
         } else {
             feedback = "You achieved a perfect score - job well done! :)";
-            feedbackColor = "green";
+            feedbackColor = "rgb(24, 181, 32)";
         }
         const quizGrade = ((correctAnswers / 7) * 100).toFixed(2);
 
         // data to be displayed on score board
         document.getElementById("feedback").innerHTML = feedback;
         document.getElementById("feedback").style.color = feedbackColor;
-        document.getElementById("gradePercentage").innerHTML = "You achieved a grade of: " + quizGrade + "%";
+        document.getElementById("gradePercentage").innerHTML = quizGrade + "%";
         document.getElementById("incorrectAnswers").innerHTML = wrongAnswers;
         document.getElementById("rightAnswers").innerHTML = correctAnswers;
         document.getElementById("score-modal").style.display = "flex";
