@@ -3,56 +3,57 @@ let correctAnswers = 0;
 let wrongAnswers = 0;
 let questionIndex = 0;
 let questionsOfRandomOrder = [];
-    const quizQuestions = [{
+    const quizQuestions = [ {
             question: "What percentage of a human brain consists of fat?",
             choiceA: "60%",
             choiceB: "20%",
             choiceC: "50%",
             choiceD: "93%",
-            correctAnswer: "A"
+            correctAnswer: "choiceA"
         }, {
             question: "What was the hottest temperature ever recorded on Earth?",
             choiceA: "2,000,000,000&deg; F",
             choiceB: "2,000,000,000&deg; K",
             choiceC: "76,983,456&deg; C",
             choiceD: "20,456,763&deg; F",
-            correctAnswer: "B"
+            correctAnswer: "choiceB"
         }, {
             question: "Where is the hottest inhabitable place on Earth?",
             choiceA: "Sahara Desert",
             choiceB: "Death Valley",
             choiceC: "Dallol, Ethiopia",
             choiceD: "Dasht-e Lut",
-            correctAnswer: "C"
+            correctAnswer: "choiceC"
         }, {
             question: "Which animal is known for having the largest eyes among all animals?",
             choiceA: "Giant Squids",
             choiceB: "Lemurs",
             choiceC: "Sphynx Cats",
             choiceD: "Ostriches",
-            correctAnswer: "A"
+            correctAnswer: "choiceA"
         }, {
             question: "What is the only planet to spin clockwise?",
             choiceA: "Mars",
             choiceB: "Neptune",
             choiceC: "Earth",
             choiceD: "Venus",
-            correctAnswer: "D"
+            correctAnswer: "choiceD"
         }, {
             question: "What is the hashtag formally known as?",
             choiceA: "Pound",
             choiceB: "Octothorpe",
             choiceC: "Hash",
             choiceD: "Tag",
-            correctAnswer: "B"
+            correctAnswer: "choiceB"
         }, {
             question: "What is the only part of the human body that cannot heal itself?",
             choiceA: "Teeth",
             choiceB: "Liver",
             choiceC: "Heart",
             choiceD: "Pancreas",
-            correctAnswer: "A"
-        },];
+            correctAnswer: "choiceA"
+        },
+];
 
     // shuffles and pushes 7 questions to questionsOfRandomOrder array (initialized as empty)
     function orderQuestions() { 
@@ -97,18 +98,14 @@ let questionsOfRandomOrder = [];
                 document.getElementById(correctAnswer).style.backgroundColor = "green";
                 correctAnswers++; 
                 questionIndex++;
-                setTimeout(() => {
-                    questionNumber++;
-                }, 2000)
+                questionNumber++;
             } else if (choice.checked && choice.value !== currentQuestionAnswer) {
-                const wrongAnswer = option.labels[0].id;
+                const wrongAnswer = choice.labels[0].id;
                 document.getElementById(wrongAnswer).style.backgroundColor = "red";
                 document.getElementById(correctAnswer).style.backgroundColor = "green";
                 wrongAnswers++; 
                 questionIndex++;
-                setTimeout(() => {
-                    questionNumber++;
-                }, 2000)
+                questionNumber++;
             }
         })
     }
@@ -117,13 +114,12 @@ let questionsOfRandomOrder = [];
     function handleNextQuestion() {
         checkAnswer();
         uncheckRadioButtons();
-        setTimeout(() => {
-            if (questionIndex < 7) {
-                nextQuestion(questionIndex);
-            }
-            handleEndGame();
+        if (questionIndex < 7) {
+            nextQuestion(questionIndex);
             resetChoiceBackground();
-        }, 2000);
+        } else {
+            handleEndGame();
+        }
     }
 
     // sets choices background back to empty after display the right/wrong colors
@@ -152,20 +148,21 @@ let questionsOfRandomOrder = [];
         } else if (correctAnswers == 5) {
             feedback = "You passed. However, there is unequivocally room to improve."
             feedbackColor = "orange";
-        } else if (playerScore == 6) {
+        } else if (correctAnswers == 6) {
             feedback = "Near perfect - one question off!";
             feedbackColor = "orange";
+        } else {
+            feedback = "You achieved a perfect score - job well done! :)";
+            feedbackColor = "green";
         }
-        feedback = "You achieved a perfect score - job well done! :)";
-        feedbackColor = "green";
         const quizGrade = ((correctAnswers / 7) * 100).toFixed(2);
 
         // data to be displayed on score board
         document.getElementById("feedback").innerHTML = feedback;
         document.getElementById("feedback").style.color = feedbackColor;
         document.getElementById("gradePercentage").innerHTML = "You achieved a grade of: " + quizGrade + "%";
-        document.getElementById("wrongAnswers").innerHTML = wrongAnswers;
-        document.getElementById("correctAnswers").innerHTML = correctAnswers;
+        document.getElementById("incorrectAnswers").innerHTML = wrongAnswers;
+        document.getElementById("rightAnswers").innerHTML = correctAnswers;
         document.getElementById("score-modal").style.display = "flex";
     }
 
@@ -182,5 +179,5 @@ let questionsOfRandomOrder = [];
 
     // closes warning modal
     function closeOptionModal() {
-        document.getElementById("option-modal").style.display = "none"
+        document.getElementById("option-modal").style.display = "none";
     }

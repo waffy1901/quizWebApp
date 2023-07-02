@@ -4,14 +4,11 @@
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
         <title> Quiz Webpage </title>
-        <link rel = "stylesheet" href="index.css">
+        <link rel = "stylesheet" href = "index.css">
     </head>
 
-    <body>
-        <h2> Quiz on Random Facts </h2>
-    </body>
-
     <body onload = "nextQuestion(0)">
+        <h2> Quiz on Random Facts </h2>
         <main>
             <!-- creating a modal for when quiz ends -->
             <div class = "modal-container" id = "score-modal">
@@ -19,8 +16,8 @@
                     <h1>Congratulations, Quiz Completed.</h1>
                     <div class = "gradeDetails">
                         <p>Total Questions: 7</p>
-                        <p>Questions Answered Correctly: <span id = "correctAnswers"></span></p>
-                        <p>Questions Answered Incorrectly: <span id = "wrongAnswers"></span></p>
+                        <p>Questions Answered Correctly: <span id = "rightAnswers"></span></p>
+                        <p>Questions Answered Incorrectly: <span id = "incorrectAnswers"></span></p>
                         <p>Your Quiz Grade: <span id = "gradePercentage"></span></p>
                         <p> <span id = "feedback"></span></p>
                     </div>
@@ -36,7 +33,7 @@
     
                 <div class = "game-details-container">
                     <h1> Questions Answered Correctly: <span id = "correctAnswers"></span> / 7</h1>
-                    <h1> Question : <span id = "questionNumber"></span> / 7</h1>
+                    <h1> Question: <span id = "questionNumber"></span> / 7</h1>
                 </div>
     
                 <div class = "game-question-container">
@@ -60,7 +57,7 @@
     
     
                     <span>
-                        <input type = "radio" id = "choiceTwo" name = "choice" class="radio" value="choiceB" />
+                        <input type = "radio" id = "choiceTwo" name = "choice" class ="radio" value ="choiceB" />
                         <label for = "choiceTwo" class = "choice" id = "bLabel"></label>
                     </span>
     
